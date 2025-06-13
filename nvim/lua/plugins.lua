@@ -51,6 +51,11 @@ return packer.startup(function(use)
         'nvim-treesitter/nvim-treesitter', 
         run = ':TSUpdate' -- automatically update tree-sitter parsers
     }
+    use {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        requires = { {"nvim-lua/plenary.nvim"} }
+    }
     use'hrsh7th/nvim-cmp'
     use'hrsh7th/cmp-nvim-lsp'
 
@@ -61,8 +66,8 @@ return packer.startup(function(use)
         requires = {
             -- lsp support
             {'neovim/nvim-lspconfig'}, -- required
-            -- {'williamboman/mason.nvim'}, -- optional
-            -- {'williamboman/mason-lspconfig.nvim'}, -- optional
+            {'williamboman/mason.nvim'}, -- optional
+            {'williamboman/mason-lspconfig.nvim'}, -- optional
 
             -- autocompletion
             {'hrsh7th/nvim-cmp'}, -- required
