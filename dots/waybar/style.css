@@ -1,0 +1,98 @@
+* {
+  border: none;
+  border-radius: 8;
+  font-family: "BlexMono Nerd Font";
+  font-size: 14px;
+  min-height: 16px;
+}
+
+window#waybar {background: transparent;}
+window#waybar.hidden {opacity: 0.2;}
+
+#window {
+  margin-top: 4px;
+  padding: 0 8px;
+  border-radius: 10px;
+  color: transparent;
+  background: transparent;
+}
+
+#workspaces {
+  margin: 4px 0 0 4px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 10px;
+  background: #282828;
+}
+
+#workspaces button {
+  color: #fbf1c7;
+  background: transparent;
+  border-radius: 2px;
+}
+
+#workspaces button.active {color: #fe8019;}
+#workspaces button:hover {color: #d65d0e; border-color: #d65d0e;}
+
+#network {
+  margin: 4px 0 0 8px;
+  padding: 0 8px;
+  border-radius: 10px;
+  color: #161320;
+  background: #fb4934;
+}
+
+#wireplumber {
+  margin: 4px 0 0 8px;
+  padding: 0 8px;
+  border-radius: 10px;
+  color: #1a1826;
+  background: #fae3b0;
+}
+
+#battery {
+  margin: 4px 0 0 8px;
+  padding: 0 8px;
+  border-radius: 10px;
+  color: #161320;
+  background: #b5e8e0;
+}
+
+#battery.critical:not(.charging) {
+  background-color: #b5e8e0;
+  color: #161320;
+  animation-name: blink;
+  animation-duration: 0.1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#battery.critical.charging {
+    background-color: #b5e8e0;
+    color: #161320;
+    animation: none;
+}
+
+@keyframes blink {
+  to {
+    background-color: #bf616a;
+    color: #b5e8e0;
+  }
+}
+
+#backlight {
+  margin: 4px 0 0 0px;
+  padding: 0 8px;
+  border-radius: 10px;
+  color: #161320;
+  background: #f8bd96;
+}
+
+#clock {
+  margin: 4px 0 0 8px;
+  padding: 0 8px;
+  border-radius: 10px;
+  color: #161320;
+  background: #8ec07c;
+}

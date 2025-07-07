@@ -1,0 +1,95 @@
+# ~/.config/wofi/config
+width=600
+height=400
+columns=2
+location=center
+allow_images=true
+image_size=32
+gtk_dark=true
+filter_rate=100
+allow_markup=true
+no_actions=true
+halign=fill
+orientation=vertical
+content_halign=fill
+insensitive=true
+show=drun
+prompt=
+
+# ~/.config/wofi/style.css
+/*
+ * .gilded theme created by v81d - converted to wofi
+ */
+
+window {
+    background-color: #282828;
+    border: none;
+    border-radius: 12px;
+    font-family: BlexMono Nerd Font;
+}
+
+#input {
+    background-color: #282828;
+    color: #d4be98;
+    padding: 14px;
+    border: none;
+    border-radius: 0px;
+    font-size: 14px;
+}
+
+#inner-box {
+    background-color: #282828;
+    padding: 8px;
+}
+
+#outer-box {
+    background-color: #282828;
+    padding: 0px;
+}
+
+#scroll {
+    background-color: #282828;
+}
+
+#text {
+    color: #d4be98;
+    padding: 12px;
+}
+
+#entry {
+    background-color: #282828;
+    color: #d4be98;
+    padding: 12px;
+    border-radius: 12px;
+    margin: 4px;
+}
+
+#entry:selected {
+    background-color: #473c32;
+    color: #d4be98;
+}
+
+#entry:hover {
+    background-color: #473c32;
+    color: #d4be98;
+}
+
+#entry.activatable {
+    background-color: #e78a4e;
+    color: #d4be98;
+}
+
+#entry.activatable:selected {
+    background-color: #a9b665;
+    color: #d4be98;
+}
+
+#entry.urgent {
+    background-color: #ea6962;
+    color: #d4be98;
+}
+
+#entry.urgent:selected {
+    background-color: #7daea3;
+    color: #d4be98;
+}
