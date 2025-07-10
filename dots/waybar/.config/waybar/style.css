@@ -22,7 +22,7 @@ window#waybar.hidden {opacity: 0.2;}
   font-size: 16px;
   font-weight: 500;
   border-radius: 10px;
-  background: #282828;
+  background: alpha(#282828,0.75);
 }
 
 #workspaces button {

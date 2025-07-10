@@ -30,14 +30,21 @@ git config --global user.name "Raaaainbow"
 git config --global user.email "seba7204@gmail.com"
 
 #zsh config with Oh My ZSH
-sudo pacman -S --noconfirm zsh
+sudo pacman -S --noconfirm --needed zsh
 echo '/sbin/zsh' | sudo tee -a /etc/shells
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Autoenv install
+cd ~/
 curl -#fLo- 'https://raw.githubusercontent.com/hyperupcall/autoenv/main/scripts/install.sh' | sh
+cd ~/dotfiles
 
-stow dots/*/
+# Dotfiles
+sudo pacman -S --noconfirm --needed stow
+mkdir -p ~/.config
+cd ~/dotfiles/dots
+stow -t ~ * --adopt
+cp -r ~/dotfiles/flags/ $HOME/.config/
 
 # ADD IWD DTUSecure CONFIG
 
@@ -49,6 +56,7 @@ sudo pacman -S --noconfirm --needed gcc nodejs cargo python
 
 # Hyprland
 sudo pacman -S --noconfirm --needed kitty wofi waybar wl-clipboard hyprlock hypridle hyprpaper hyprpicker
+yay -S --noconfirm --needed xdg-desktop-portal-hyprland
 
 # AUR packages
 yay -S --noconfirm --needed hyprshot zotero visual-studio-code-bin google-chrome vesktop bitwarden bambu-studio paccache-hook
@@ -71,13 +79,14 @@ else
 fi
 
 # Misc
-sudo pacman -S --noconfirm --needed maven obs-studio signal-desktop krita libsecret dotnet-sdk
+sudo pacman -S --noconfirm --needed maven obs-studio signal-desktop krita libsecret dotnet-sdk batsignal
 
 # Time & Date
 sudo timedatectl set-timezone Europe/Copenhagen
 sudo localectl set-locale LANG=en_GB.UTF-8
 
 # Enable services
+systemctl --user --enable --now batsignal
 sudo systemctl enable NetworkManager
 sudo systemctl enable pipewire
 sudo systemctl enable pipewire-pulse
@@ -107,6 +116,6 @@ sudo pacman -S --needed --noconfirm $(pacman -Ssq noto-fonts) ttf-ibmplex-mono-n
 fc-cache -f -v
 
 # Python
-python -m venv .globalenv
-source .globalenv/bin/activate
-pip install -r python-packages.txt
+python -m venv ~/.globalenv
+source ~/.globalenv/bin/activate
+pip install -r ~/dotfiles/scripts/python-pkgs.txt
