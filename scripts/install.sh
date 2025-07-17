@@ -21,8 +21,8 @@ sudo pacman -S --noconfirm --needed nvim fzf tree-sitter tree-sitter-cli ripgrep
 
 sudo pacman -S --noconfirm --needed powertop
 
-sudo powertop --calibrate
-sudo powertop --auto-tune
+#sudo powertop --calibrate
+#sudo powertop --auto-tune
 
 sudo pacman -S --noconfirm --needed texlive
 
