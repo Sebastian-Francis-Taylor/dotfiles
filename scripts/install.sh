@@ -17,7 +17,7 @@ sudo pacman -S --noconfirm --needed amd-ucode
 # Wifi, bluetooth etc
 sudo pacman -S --noconfirm --needed bluez bluez-utils cups
 # CLI Tools
-sudo pacman -S --noconfirm --needed nvim fzf tree-sitter tree-sitter-cli ripgrep tmux btop tree fastfetch networkmanager networkmanager-applet
+sudo pacman -S --noconfirm --needed nvim fzf tree-sitter tree-sitter-cli ripgrep tmux btop tree fastfetch networkmanager networkmanager-applet tldr
 
 sudo pacman -S --noconfirm --needed powertop
 
@@ -49,13 +49,13 @@ cp -r ~/dotfiles/flags/ $HOME/.config/
 # ADD IWD DTUSecure CONFIG
 
 # Utils
-sudo pacman -S --noconfirm --needed firefox nautilus udiskie thunderbird brightnessctl zathura usbutils unzip pipewire pipewire-pulse poppler-utils iwd
+sudo pacman -S --noconfirm --needed firefox nautilus udiskie thunderbird brightnessctl zathura usbutils unzip pipewire pipewire-pulse iwd
 
 # Dev 
 sudo pacman -S --noconfirm --needed gcc nodejs cargo python
 
 # Hyprland
-sudo pacman -S --noconfirm --needed kitty wofi waybar wl-clipboard hyprlock hypridle hyprpaper hyprpicker
+sudo pacman -S --noconfirm --needed kitty wofi waybar wl-clipboard hyprlock hypridle hyprpaper hyprpicker hyprland
 yay -S --noconfirm --needed xdg-desktop-portal-hyprland
 
 # AUR packages
