@@ -112,7 +112,7 @@ EOF
 sudo systemctl restart NetworkManager
 
 # Fonts install
-sudo pacman -S --needed --noconfirm $(pacman -Ssq noto-fonts) ttf-ibmplex-mono-nerd
+sudo pacman -S --needed --noconfirm noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra ttf-ibmplex-mono-nerd
 fc-cache -f -v
 
 # Python
