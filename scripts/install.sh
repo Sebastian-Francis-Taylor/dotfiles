@@ -49,7 +49,7 @@ cp -r ~/dotfiles/flags/ $HOME/.config/
 # ADD IWD DTUSecure CONFIG
 
 # Utils
-sudo pacman -S --noconfirm --needed firefox nautilus udiskie thunderbird brightnessctl zathura usbutils unzip pipewire pipewire-pulse iwd
+sudo pacman -S --noconfirm --needed firefox nautilus udiskie thunderbird poppler brightnessctl zathura usbutils unzip pipewire pipewire-pulse iwd
 
 # Dev 
 sudo pacman -S --noconfirm --needed gcc nodejs cargo python
