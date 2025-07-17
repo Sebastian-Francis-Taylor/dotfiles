@@ -29,10 +29,6 @@ sudo pacman -S --noconfirm --needed texlive
 git config --global user.name "Raaaainbow"
 git config --global user.email "seba7204@gmail.com"
 
-#zsh config with Oh My ZSH
-sudo pacman -S --noconfirm --needed zsh
-echo '/sbin/zsh' | sudo tee -a /etc/shells
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Autoenv install
 cd ~/
@@ -119,3 +115,8 @@ fc-cache -f -v
 python -m venv ~/.globalenv
 source ~/.globalenv/bin/activate
 pip install -r ~/dotfiles/scripts/python-pkgs.txt
+
+#zsh config with Oh My ZSH
+sudo pacman -S --noconfirm --needed zsh
+echo '/sbin/zsh' | sudo tee -a /etc/shells
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
