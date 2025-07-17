@@ -58,8 +58,8 @@ yay -S --noconfirm --needed xdg-desktop-portal-hyprland
 yay -S --noconfirm --needed hyprshot zotero visual-studio-code-bin google-chrome vesktop bitwarden bambu-studio paccache-hook
 
 # Cloud storage
-sudo pacman -S libsecret gnome-keyring
-yay -S filen-desktop
+sudo pacman -S --needed --noconfirm libsecret gnome-keyring
+yay -S --needed --noconfirm filen-desktop
 curl -sL https://filen.io/cli.sh | bash
 
 mkdir -p $HOME/Cloud
