@@ -17,15 +17,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
+-- LSP capabilities for nvim-cmp
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-local lsp = require('lsp-zero').preset({
-    name = 'minimal',
-    set_lsp_keymaps = true,
-    manage_nvim_cmp = true,
-    suggest_lsp_servers = false,
-})
-
+-- Diagnostic configuration
 vim.diagnostic.config({
     virtual_text = true,
     signs = true,
@@ -34,15 +29,20 @@ vim.diagnostic.config({
     severity_sort = false,
     float = true,
 })
+
+-- Mason setup
 require('mason').setup({})
 require('mason-lspconfig').setup({
   ensure_installed = {'clangd', 'pyright', 'texlab', 'fsautocomplete'},
   handlers = {
+    -- Default handler for all servers
     function(server_name)
       require('lspconfig')[server_name].setup({
         capabilities = lsp_capabilities,
       })
     end,
+    
+    -- Custom handler for lua_ls
     lua_ls = function()
       require('lspconfig').lua_ls.setup({
         capabilities = lsp_capabilities,
@@ -63,9 +63,22 @@ require('mason-lspconfig').setup({
         }
       })
     end,
+    
+    -- Custom handler for fsautocomplete (if needed)
+    fsautocomplete = function()
+      require('lspconfig').fsautocomplete.setup({
+        capabilities = lsp_capabilities,
+        cmd = {'fsautocomplete', '--background-service-enabled'},
+        filetypes = {'fsharp'},
+        init_options = {
+          AutomaticWorkspaceInit = true
+        }
+      })
+    end,
   }
 })
 
+-- nvim-cmp setup
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
 

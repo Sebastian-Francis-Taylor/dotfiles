@@ -105,7 +105,6 @@ source $ZSH/oh-my-zsh.sh
 
 # Terminal workflow
 alias vim='nvim'
-alias fcd='dir=$(find ~/Documents ~/Projects ~/Uni ~/dotfiles -type d \( -name ".cache" -o -name "node_modules" -o -name ".git" -o -name ".venv" \) -prune -o -type d -print 2>/dev/null | fzf) && if [ -z "$TMUX" ]; then tmux new-session -c "$dir"; else cd "$dir"; fi'
 
 # Wayland/Hyprland environment variables
 export WLR_NO_HARDWARE_CURSORS=1
@@ -117,8 +116,6 @@ export PATH="$HOME/.local/bin:$PATH"
 # Global python install 
 source ~/.globalenv/bin/activate
 export VIRTUAL_ENV_DISABLE_PROMPT=1
-
-
 
 # filen-cli
 PATH=$PATH:~/.filen-cli/bin

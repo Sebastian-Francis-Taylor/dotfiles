@@ -26,7 +26,7 @@ sudo pacman -S --noconfirm --needed powertop
 
 sudo pacman -S --noconfirm --needed texlive
 
-git config --global user.name "Raaaainbow"
+git config --global user.name "Sebastian-Francis-Taylor"
 git config --global user.email "seba7204@gmail.com"
 
 
@@ -46,6 +46,7 @@ cp -r ~/dotfiles/flags/ $HOME/.config/
 
 # Utils
 sudo pacman -S --noconfirm --needed firefox nautilus udiskie thunderbird poppler brightnessctl zathura usbutils unzip pipewire pipewire-pulse iwd
+yay -S --noconfirm --needed zen-browser-bin
 
 # Dev 
 sudo pacman -S --noconfirm --needed gcc nodejs cargo python
@@ -58,7 +59,7 @@ yay -S --noconfirm --needed xdg-desktop-portal-hyprland
 yay -S --noconfirm --needed hyprshot zotero visual-studio-code-bin google-chrome vesktop bitwarden bambu-studio paccache-hook
 
 # Cloud storage
-sudo pacman -S --needed --noconfirm libsecret gnome-keyring
+sudo pacman -S --needed --noconfirm libsecret gnome-keyring pika-backup
 yay -S --needed --noconfirm filen-desktop
 curl -sL https://filen.io/cli.sh | bash
 
@@ -115,6 +116,10 @@ fc-cache -f -v
 python -m venv ~/.globalenv
 source ~/.globalenv/bin/activate
 pip install -r ~/dotfiles/scripts/python-pkgs.txt
+
+chmod +x ~/dotfiles/scripts/fcd.sh
+mkdir -p ~/.local/bin
+ln -s ~/dotfiles/scripts/fcd.sh ~/.local/bin/fcd
 
 #zsh config with Oh My ZSH
 sudo pacman -S --noconfirm --needed zsh
