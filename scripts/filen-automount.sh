@@ -1,6 +1,6 @@
 #!/bin/bash
 FILENPATH=/home/taylor/.filen-cli/bin/filen
-MOUNTPOINT=/home/Cloud
+MOUNTPOINT=$HOME/Cloud
 
 $FILENPATH mount $MOUNTPOINT
 
