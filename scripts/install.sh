@@ -78,6 +78,9 @@ fi
 # Misc
 sudo pacman -S --noconfirm --needed maven obs-studio signal-desktop krita libsecret dotnet-sdk batsignal
 
+# rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
 # Time & Date
 sudo timedatectl set-timezone Europe/Copenhagen
 sudo localectl set-locale LANG=en_GB.UTF-8
@@ -117,10 +120,14 @@ python -m venv ~/.globalenv
 source ~/.globalenv/bin/activate
 pip install -r ~/dotfiles/scripts/python-pkgs.txt
 
-chmod +x ~/dotfiles/scripts/fcd.sh
+# Scripts
 mkdir -p ~/.local/bin
+
+chmod +x ~/dotfiles/scripts/fcd.sh
 ln -s ~/dotfiles/scripts/fcd.sh ~/.local/bin/fcd
 
+chmod +x ~/dotfiles/scripts/filen-automount.sh
+ln -s ~/dotfiles/scripts/filen-automount.sh ~/.local/bin/filen-automount
 #zsh config with Oh My ZSH
 sudo pacman -S --noconfirm --needed zsh
 echo '/sbin/zsh' | sudo tee -a /etc/shells
