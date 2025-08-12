@@ -15,9 +15,9 @@ rm -rf yay
 # Core (change to intel-ucode if there is an intel chip in the system)
 sudo pacman -S --noconfirm --needed amd-ucode
 # Wifi, bluetooth etc
-sudo pacman -S --noconfirm --needed bluez bluez-utils cups
+sudo pacman -S --noconfirm --needed bluez bluez-utils cups networkmanager 
 # CLI Tools
-sudo pacman -S --noconfirm --needed nvim fzf tree-sitter tree-sitter-cli ripgrep tmux btop tree fastfetch networkmanager networkmanager-applet tldr
+sudo pacman -S --noconfirm --needed nvim fzf tree-sitter tree-sitter-cli ripgrep tmux btop fastfetch tldr
 
 sudo pacman -S --noconfirm --needed powertop
 
@@ -45,7 +45,7 @@ cp -r ~/dotfiles/flags/ $HOME/.config/
 # ADD IWD DTUSecure CONFIG
 
 # Utils
-sudo pacman -S --noconfirm --needed firefox nautilus udiskie thunderbird poppler brightnessctl zathura usbutils unzip pipewire pipewire-pulse iwd
+sudo pacman -S --noconfirm --needed firefox nautilus udiskie thunderbird poppler brightnessctl zathura usbutils unzip pipewire pipewire-pulse iwd eog
 yay -S --noconfirm --needed zen-browser-bin
 
 # Dev 
@@ -101,12 +101,15 @@ sudo systemctl start NetworkManager
 sudo tee /etc/NetworkManager/NetworkManager.conf <<EOF
 [main]
 dns=none
+plugins=keyfile
 [device]
 wifi.powersave=2
 ethernet.cloned-mac-address=random
 wifi.cloned-mac-address=random
 [connection]
 ipv6.method=auto
+[device]
+wifi.backend=iwd
 EOF
 
 sudo systemctl restart NetworkManager
