@@ -131,6 +131,7 @@ ln -s ~/dotfiles/scripts/fcd.sh ~/.local/bin/fcd
 
 chmod +x ~/dotfiles/scripts/filen-automount.sh
 ln -s ~/dotfiles/scripts/filen-automount.sh ~/.local/bin/filen-automount
+
 #zsh config with Oh My ZSH
 sudo pacman -S --noconfirm --needed zsh
 echo '/sbin/zsh' | sudo tee -a /etc/shells
