@@ -38,8 +38,7 @@ cd ~/dotfiles
 # Dotfiles
 sudo pacman -S --noconfirm --needed stow
 mkdir -p ~/.config
-cd ~/dotfiles/dots
-stow -t ~ * --adopt
+stow ~/dotfiles/dots
 cp -r ~/dotfiles/flags/ $HOME/.config/
 
 # ADD IWD DTUSecure CONFIG
