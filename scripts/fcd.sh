@@ -6,6 +6,7 @@ dir=$(find ~/Documents ~/Projects ~/Uni ~/dotfiles \
         -o -name "node_modules" \
         -o -name ".git" \
         -o -name ".venv" \
+        -o -name "bin" \
     \) -prune \
     -o -type d -print 2>/dev/null \
     | fzf)
