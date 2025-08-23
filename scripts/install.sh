@@ -27,7 +27,7 @@ sudo pacman -S --noconfirm --needed powertop
 sudo pacman -S --noconfirm --needed texlive
 
 git config --global user.name "Sebastian-Francis-Taylor"
-git config --global user.email "seba7204@gmail.com"
+git config --global user.email "me@Sebastian-Francis-Taylor"
 
 
 # Autoenv install
@@ -62,6 +62,7 @@ sudo pacman -S --needed --noconfirm libsecret gnome-keyring pika-backup
 yay -S --needed --noconfirm filen-desktop
 curl -sL https://filen.io/cli.sh | bash
 
+# consider updated to restore from pika-backup
 mkdir -p $HOME/Cloud
 if filen mount $HOME/Cloud; then
     # Only copy if directories exist in cloud storage
