@@ -9,3 +9,5 @@ nvim
 theme.conf
 waybar
 wofi
+
+scripts/filen-cli-v0.0.39-linux-x64
