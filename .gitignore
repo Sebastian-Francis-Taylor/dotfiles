@@ -1,1 +1,11 @@
-nvim/.undo/*
+# Symlinks created by stow
+.config
+batsignal
+btop
+hypr
+kitty
+kitty.conf
+nvim
+theme.conf
+waybar
+wofi

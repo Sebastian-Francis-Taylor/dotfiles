@@ -112,12 +112,13 @@ export MOZ_ENABLE_WAYLAND=1
 export MOZ_USE_XINPUT2=1
 export EDITOR=nvim
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.filen-cli/bin:$PATH"
 
 # Global python install 
 source ~/.globalenv/bin/activate
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # filen-cli
-PATH=$PATH:~/.filen-cli/bin
+# PATH=$PATH:~/.filen-cli/bin
 
 source ~/.autoenv/activate.sh

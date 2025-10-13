@@ -134,11 +134,10 @@ _G.packer_plugins = {
     path = "/home/taylor/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
-  ["mini.nvim"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/taylor/.local/share/nvim/site/pack/packer/opt/mini.nvim",
-    url = "https://github.com/echasnovski/mini.nvim"
+  ["nord.nvim"] = {
+    loaded = true,
+    path = "/home/taylor/.local/share/nvim/site/pack/packer/start/nord.nvim",
+    url = "https://github.com/shaunsingh/nord.nvim"
   },
   ["null-ls.nvim"] = {
     loaded = true,
@@ -160,6 +159,14 @@ _G.packer_plugins = {
     path = "/home/taylor/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
+  ["nvim-metals"] = {
+    config = { "\27LJ\2\nI\0\0\3\1\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0-\2\0\0B\0\2\1K\0\1\0\1À\25initialize_or_attach\vmetals\frequireÚ\1\1\2\b\0\r\0\0196\2\0\0009\2\1\0029\2\2\2'\4\3\0005\5\4\0B\2\3\0026\3\0\0009\3\1\0039\3\5\3'\5\6\0005\6\b\0009\a\a\0=\a\t\0063\a\n\0=\a\v\6=\2\f\6B\3\3\0012\0\0€K\0\1\0\ngroup\rcallback\0\fpattern\1\0\3\fpattern\0\ngroup\0\rcallback\0\aft\rFileType\24nvim_create_autocmd\1\0\1\nclear\2\16nvim-metals\24nvim_create_augroup\bapi\bvim\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/taylor/.local/share/nvim/site/pack/packer/opt/nvim-metals",
+    url = "https://github.com/scalameta/nvim-metals"
+  },
   ["nvim-treesitter"] = {
     loaded = true,
     path = "/home/taylor/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
@@ -174,14 +181,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/taylor/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
-  },
-  ["render-markdown.nvim"] = {
-    config = { "\27LJ\2\nA\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\20render-markdown\frequire\0" },
-    load_after = {},
-    loaded = true,
-    needs_bufread = false,
-    path = "/home/taylor/.local/share/nvim/site/pack/packer/opt/render-markdown.nvim",
-    url = "https://github.com/MeanderingProgrammer/render-markdown.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
@@ -201,15 +200,15 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Load plugins in order defined by `after`
-time([[Sequenced loading]], true)
-vim.cmd [[ packadd nvim-treesitter ]]
-vim.cmd [[ packadd render-markdown.nvim ]]
-
--- Config for: render-markdown.nvim
-try_loadstring("\27LJ\2\nA\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\20render-markdown\frequire\0", "config", "render-markdown.nvim")
-
-time([[Sequenced loading]], false)
+vim.cmd [[augroup packer_load_aucmds]]
+vim.cmd [[au!]]
+  -- Filetype lazy-loads
+time([[Defining lazy-load filetype autocommands]], true)
+vim.cmd [[au FileType java ++once lua require("packer.load")({'nvim-metals'}, { ft = "java" }, _G.packer_plugins)]]
+vim.cmd [[au FileType scala ++once lua require("packer.load")({'nvim-metals'}, { ft = "scala" }, _G.packer_plugins)]]
+vim.cmd [[au FileType sbt ++once lua require("packer.load")({'nvim-metals'}, { ft = "sbt" }, _G.packer_plugins)]]
+time([[Defining lazy-load filetype autocommands]], false)
+vim.cmd("augroup END")
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

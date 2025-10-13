@@ -44,7 +44,7 @@ cp -r ~/dotfiles/flags/ $HOME/.config/
 # ADD IWD DTUSecure CONFIG
 
 # Utils
-sudo pacman -S --noconfirm --needed firefox nautilus udiskie thunderbird poppler brightnessctl zathura usbutils unzip pipewire pipewire-pulse iwd eog
+sudo pacman -S --noconfirm --needed firefox nautilus udiskie thunderbird poppler brightnessctl zathura usbutils unzip pipewire pipewire-pulse iwd eog pandoc
 yay -S --noconfirm --needed zen-browser-bin
 
 # Dev 
@@ -55,7 +55,7 @@ sudo pacman -S --noconfirm --needed kitty wofi waybar wl-clipboard hyprlock hypr
 yay -S --noconfirm --needed xdg-desktop-portal-hyprland
 
 # AUR packages
-yay -S --noconfirm --needed hyprshot zotero visual-studio-code-bin google-chrome vesktop bitwarden bambu-studio paccache-hook
+yay -S --noconfirm --needed hyprshot zotero visual-studio-code-bin google-chrome vesktop bitwarden bambustudio-bin paccache-hook
 
 # Cloud storage
 sudo pacman -S --needed --noconfirm libsecret gnome-keyring pika-backup

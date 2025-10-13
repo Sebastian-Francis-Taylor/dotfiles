@@ -41,7 +41,9 @@ packer.init({
 -- Install your plugins here
 return packer.startup(function(use)
     use 'wbthomason/packer.nvim'	
-	use 'ellisonleao/gruvbox.nvim'
+    use 'ellisonleao/gruvbox.nvim'
+    -- use 'e-ink-colorscheme/e-ink.nvim'
+    use 'shaunsingh/nord.nvim'
     -- use 'm4xshen/autoclose.nvim'
    	use {
    	    'nvim-telescope/telescope.nvim', tag = '0.1.8',
@@ -49,6 +51,7 @@ return packer.startup(function(use)
     }
     use  {
         'nvim-treesitter/nvim-treesitter', 
+        branch = 'master',
         run = ':TSUpdate' -- automatically update tree-sitter parsers
     }
     use {
@@ -80,18 +83,32 @@ return packer.startup(function(use)
         requires = {
             "nvim-lua/plenary.nvim",
             "sindrets/diffview.nvim",
-        }
+    }
     }
     use 'sindrets/diffview.nvim' 
     use 'jose-elias-alvarez/null-ls.nvim'
-    use({
-       'MeanderingProgrammer/render-markdown.nvim',
-       after = { 'nvim-treesitter' },
-       requires = { 'echasnovski/mini.nvim', opt = true }, -- if you use the mini.nvim suite
-       -- requires = { 'echasnovski/mini.icons', opt = true }, -- if you use standalone mini plugins
-       -- requires = { 'nvim-tree/nvim-web-devicons', opt = true }, -- if you prefer nvim-web-devicons
-       config = function()
-          require('render-markdown').setup({})
-       end,
-    })   use 'norcalli/nvim-colorizer.lua'
+    use 'norcalli/nvim-colorizer.lua'
+
+    use {
+      "scalameta/nvim-metals",
+      ft = { "scala", "sbt", "java" },
+      opts = function()
+        local metals_config = require("metals").bare_config()
+        metals_config.on_attach = function(client, bufnr)
+          -- your on_attach function
+        end
+
+        return metals_config
+      end,
+      config = function(self, metals_config)
+        local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+        vim.api.nvim_create_autocmd("FileType", {
+          pattern = self.ft,
+          callback = function()
+            require("metals").initialize_or_attach(metals_config)
+          end,
+          group = nvim_metals_group,
+        })
+      end
+    }
 end)
