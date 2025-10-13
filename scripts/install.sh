@@ -8,7 +8,7 @@ sudo pacman -S --noconfirm --needed git
 sudo pacman -S --noconfirm --needed base-devel
 git clone https://aur.archlinux.org/yay.git
 cd yay
-makepkg -si
+makepkg -si --noconfirm
 cd ..
 rm -rf yay
 
@@ -19,15 +19,15 @@ sudo pacman -S --noconfirm --needed bluez bluez-utils cups networkmanager
 # CLI Tools
 sudo pacman -S --noconfirm --needed nvim fzf tree-sitter tree-sitter-cli ripgrep tmux btop fastfetch tldr
 
-sudo pacman -S --noconfirm --needed powertop
+sudo pacman -S --noconfirm --needed powertop cpupower
 
 #sudo powertop --calibrate
-#sudo powertop --auto-tune
+sudo powertop --auto-tune
 
 sudo pacman -S --noconfirm --needed texlive
 
 git config --global user.name "Sebastian-Francis-Taylor"
-git config --global user.email "me@Sebastian-Francis-Taylor"
+git config --global user.email "me@Sebastian-Francis-Taylor.com"
 
 
 # Autoenv install
@@ -38,7 +38,8 @@ cd ~/dotfiles
 # Dotfiles
 sudo pacman -S --noconfirm --needed stow
 mkdir -p ~/.config
-stow ~/dotfiles/dots
+cd ~/dotfiles && stow dots
+cd ..
 cp -r ~/dotfiles/flags/ $HOME/.config/
 
 # ADD IWD DTUSecure CONFIG
@@ -78,9 +79,6 @@ fi
 # Misc
 sudo pacman -S --noconfirm --needed maven obs-studio signal-desktop krita libsecret dotnet-sdk batsignal
 
-# rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-
 # Time & Date
 sudo timedatectl set-timezone Europe/Copenhagen
 sudo localectl set-locale LANG=en_GB.UTF-8
@@ -88,14 +86,13 @@ sudo localectl set-locale LANG=en_GB.UTF-8
 # Enable services
 systemctl --user --enable --now batsignal
 sudo systemctl enable NetworkManager
-sudo systemctl enable pipewire
-sudo systemctl enable pipewire-pulse
 sudo systemctl enable bluetooth
 sudo systemctl enable cups
-sudo systemctl --user enable udiskie
 sudo systemctl enable fstrim.timer
 sudo usermod -aG wheel,audio,video,input,storage $USER
 sudo systemctl start NetworkManager
+systemctl --user enable --now pipewire pipewire-pulse
+systemctl enable --user udiskie  
 
 # Configure networkmanager
 sudo tee /etc/NetworkManager/NetworkManager.conf <<EOF
@@ -120,8 +117,7 @@ fc-cache -f -v
 
 # Python
 python -m venv ~/.globalenv
-source ~/.globalenv/bin/activate
-pip install -r ~/dotfiles/scripts/python-pkgs.txt
+~/.globalenv/bin/pip install -r ~/dotfiles/scripts/python-pkgs.txt
 
 # Scripts
 mkdir -p ~/.local/bin
