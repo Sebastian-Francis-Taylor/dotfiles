@@ -1,15 +1,43 @@
-# Symlinks created by stow
-.config
-batsignal
-btop
-hypr
-kitty
-kitty.conf
-nvim
-theme.conf
-waybar
-wofi
-.tmux.conf
-.zshrc
+scripts/filen-cli*
 
-scripts/filen-cli-v0.0.39-linux-x64
+result
+*/result
+
+*~
+*.swp
+*.swo
+*.swn
+.*.swp
+.*.swo
+.*.swn
+*.backup
+*.bak
+*.tmp
+
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+Desktop.ini
+
+dots/.config/nvim/plugin/
+dots/.config/nvim/.netrwhist
+
+.zsh_history
+.bash_history
+
+# Log files
+*.log
+
+# Private/sensitive files (if you keep any)
+*secret*
+*private*
+.env
+.env.local
+
+# Compiled Python files
+__pycache__/
+*.py[cod]
+*$py.class
