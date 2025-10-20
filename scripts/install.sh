@@ -17,30 +17,29 @@ sudo pacman -S --noconfirm --needed amd-ucode
 # Wifi, bluetooth etc
 sudo pacman -S --noconfirm --needed bluez bluez-utils cups networkmanager 
 # CLI Tools
-sudo pacman -S --noconfirm --needed nvim fzf tree-sitter tree-sitter-cli ripgrep tmux btop fastfetch tldr
+sudo pacman -S --noconfirm --needed nvim fzf tree-sitter tree-sitter-cli ripgrep tmux btop fastfetch tldr tree
 
 sudo pacman -S --noconfirm --needed powertop cpupower
 
 #sudo powertop --calibrate
-sudo powertop --auto-tune
+#sudo powertop --auto-tune
 
 sudo pacman -S --noconfirm --needed texlive
 
 git config --global user.name "Sebastian-Francis-Taylor"
-git config --global user.email "me@Sebastian-Francis-Taylor.com"
+git config --global user.email "me@sebastian-taylor.com"
 
 
 # Autoenv install
-cd ~/
+cd $HOME/
 curl -#fLo- 'https://raw.githubusercontent.com/hyperupcall/autoenv/main/scripts/install.sh' | sh
-cd ~/dotfiles
+cd $HOME/dotfiles
 
 # Dotfiles
 sudo pacman -S --noconfirm --needed stow
-mkdir -p ~/.config
-cd ~/dotfiles && stow dots
-cd ..
-cp -r ~/dotfiles/flags/ $HOME/.config/
+mkdir -p $HOME/.config
+stow -d $HOME/dotfiles -t $HOME dots
+cp -r $HOME/dotfiles/flags/ $HOME/.config/
 
 # ADD IWD DTUSecure CONFIG
 
@@ -116,17 +115,19 @@ sudo pacman -S --needed --noconfirm noto-fonts noto-fonts-cjk noto-fonts-emoji n
 fc-cache -f -v
 
 # Python
-python -m venv ~/.globalenv
-~/.globalenv/bin/pip install -r ~/dotfiles/scripts/python-pkgs.txt
+python -m venv $HOME/.globalenv
+$HOME/.globalenv/bin/pip install -r $HOME/dotfiles/scripts/python-pkgs.txt
 
 # Scripts
-mkdir -p ~/.local/bin
+mkdir -p $HOME/.local/bin
 
-chmod +x ~/dotfiles/scripts/fcd.sh
-ln -s ~/dotfiles/scripts/fcd.sh ~/.local/bin/fcd
+chmod +x $HOME/dotfiles/scripts/fcd.sh
+ln -s $HOME/dotfiles/scripts/fcd.sh $HOME/.local/bin/fcd
 
-chmod +x ~/dotfiles/scripts/filen-automount.sh
-ln -s ~/dotfiles/scripts/filen-automount.sh ~/.local/bin/filen-automount
+chmod +x $HOME/dotfiles/scripts/filen-automount.sh
+ln -s $HOME/dotfiles/scripts/filen-automount.sh $HOME/.local/bin/filen-automount
+
+chomod +x $HOME/dotfiles/dots/.config/monitor.sh
 
 #zsh config with Oh My ZSH
 sudo pacman -S --noconfirm --needed zsh
