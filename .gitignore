@@ -25,6 +25,9 @@ Desktop.ini
 dots/.config/nvim/plugin/
 dots/.config/nvim/.netrwhist
 
+# Local symlink directory (not needed in repo)
+/.config/
+
 .zsh_history
 .bash_history
 
@@ -36,6 +39,10 @@ dots/.config/nvim/.netrwhist
 *private*
 .env
 .env.local
+
+# Ensure dots/.config files are always tracked (except specific exclusions above)
+!dots/.config/
+!dots/.config/**
 
 # Compiled Python files
 __pycache__/
