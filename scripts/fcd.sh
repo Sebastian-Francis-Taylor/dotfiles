@@ -11,6 +11,10 @@ dir=$(find ~/Documents ~/Projects ~/Uni ~/dotfiles \
     -o -type d -print 2>/dev/null \
     | fzf)
 
+if [ -z "$dir" ]; then
+    exit 0
+fi
+
 if [ -z "$TMUX" ]; then
     tmux new-session -c "$dir" \; send-keys "nvim ." Enter
 else
