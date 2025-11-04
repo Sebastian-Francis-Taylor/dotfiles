@@ -17,7 +17,7 @@ sudo pacman -S --noconfirm --needed amd-ucode
 # Wifi, bluetooth etc
 sudo pacman -S --noconfirm --needed bluez bluez-utils cups networkmanager 
 # CLI Tools
-sudo pacman -S --noconfirm --needed nvim fzf tree-sitter tree-sitter-cli ripgrep tmux btop fastfetch tldr tree
+sudo pacman -S --noconfirm --needed nvim fzf tree-sitter tree-sitter-cli ripgrep tmux btop fastfetch tldr tree sudo-rs bc
 
 sudo pacman -S --noconfirm --needed powertop cpupower
 
