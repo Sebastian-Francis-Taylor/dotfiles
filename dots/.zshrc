@@ -105,6 +105,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Terminal workflow
 alias sudo='sudo-rs'
+alias sudoedit ='sudoedit-rs'
 alias vim='nvim'
 alias lock='hyprlock'
 
