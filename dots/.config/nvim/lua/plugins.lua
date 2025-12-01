@@ -40,82 +40,92 @@ packer.init({
 
 -- Install your plugins here
 return packer.startup(function(use)
-    use 'wbthomason/packer.nvim'	
+    -- Plugin manager
+    use 'wbthomason/packer.nvim'
+    
+    -- Colorschemes
     use 'ellisonleao/gruvbox.nvim'
-    -- use 'e-ink-colorscheme/e-ink.nvim'
     use 'shaunsingh/nord.nvim'
-    -- use 'm4xshen/autoclose.nvim'
-   	use {
-   	    'nvim-telescope/telescope.nvim', tag = '0.1.8',
-        requires = { {'nvim-lua/plenary.nvim'} }
-    }
-    use  {
-        'nvim-treesitter/nvim-treesitter', 
-        branch = 'master',
-        run = ':TSUpdate' -- automatically update tree-sitter parsers
-    }
+    -- use 'e-ink-colorscheme/e-ink.nvim'
+    
+    -- Telescope
     use {
-        "ThePrimeagen/harpoon",
-        branch = "harpoon2",
-        requires = { {"nvim-lua/plenary.nvim"} }
+        'nvim-telescope/telescope.nvim', 
+        tag = '0.1.8',
+        requires = { 'nvim-lua/plenary.nvim' }
     }
-
+    
+    -- Treesitter
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        branch = 'master',
+        run = ':TSUpdate'
+    }
+    use 'nvim-treesitter/nvim-treesitter-textobjects'
+    
+    -- Navigation
+    use {
+        'ThePrimeagen/harpoon',
+        branch = 'harpoon2',
+        requires = { 'nvim-lua/plenary.nvim' }
+    }
     use 'mbbill/undotree'
-
-    -- Lsp
+    
+    -- LSP
     use 'neovim/nvim-lspconfig'
     use 'williamboman/mason.nvim'
     use 'williamboman/mason-lspconfig.nvim'
-
-    -- Autocompletion
+    use {
+        'scalameta/nvim-metals',
+        ft = { 'scala', 'sbt', 'java' },
+        opts = function()
+            local metals_config = require('metals').bare_config()
+            metals_config.on_attach = function(client, bufnr)
+                -- your on_attach function
+            end
+            return metals_config
+        end,
+        config = function(self, metals_config)
+            local nvim_metals_group = vim.api.nvim_create_augroup('nvim-metals', { clear = true })
+            vim.api.nvim_create_autocmd('FileType', {
+                pattern = self.ft,
+                callback = function()
+                    require('metals').initialize_or_attach(metals_config)
+                end,
+                group = nvim_metals_group,
+            })
+        end
+    }
+    
+    -- Completion
     use 'hrsh7th/nvim-cmp'
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-nvim-lua'
-
-    -- Snippets
     use 'L3MON4D3/LuaSnip'
     use 'saadparwaiz1/cmp_luasnip'
-
-    use 'lervag/vimtex'
-    use  {'NeogitOrg/Neogit',
+    
+    -- Git
+    use {
+        'NeogitOrg/Neogit',
         requires = {
-            "nvim-lua/plenary.nvim",
-            "sindrets/diffview.nvim",
+            'nvim-lua/plenary.nvim',
+            'sindrets/diffview.nvim',
+        }
     }
-    }
-    use 'sindrets/diffview.nvim' 
+    use 'sindrets/diffview.nvim'
+    
+    -- Utilities
+    use 'lervag/vimtex'
     use 'jose-elias-alvarez/null-ls.nvim'
     use 'norcalli/nvim-colorizer.lua'
-
+    use 'Aasim-A/scrollEOF.nvim'
     use {
-      "scalameta/nvim-metals",
-      ft = { "scala", "sbt", "java" },
-      opts = function()
-        local metals_config = require("metals").bare_config()
-        metals_config.on_attach = function(client, bufnr)
-          -- your on_attach function
-        end
-
-        return metals_config
-      end,
-      config = function(self, metals_config)
-        local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
-        vim.api.nvim_create_autocmd("FileType", {
-          pattern = self.ft,
-          callback = function()
-            require("metals").initialize_or_attach(metals_config)
-          end,
-          group = nvim_metals_group,
-        })
-      end
-    }
-    use {
-        "windwp/nvim-autopairs",
-        event = "InsertEnter",
+        'windwp/nvim-autopairs',
+        event = 'InsertEnter',
         config = function()
-            require("nvim-autopairs").setup {}
+            require('nvim-autopairs').setup {}
         end
     }
 end)

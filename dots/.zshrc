@@ -87,6 +87,8 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='nvim'
 # fi
+#
+export EDITOR='NVIM'
 
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
@@ -98,16 +100,14 @@ source $ZSH/oh-my-zsh.sh
 # - $ZSH_CUSTOM/aliases.zsh
 # - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Terminal workflow
 alias sudo='sudo-rs'
-alias sudoedit ='sudoedit-rs'
+alias sudoedit='sudoedit-rs'
 alias vim='nvim'
 alias lock='hyprlock'
+
+export FCD_SEARCH_DIRS="$HOME/Documents $HOME/Projects $HOME/Uni $HOME/dotfiles"
 
 # Wayland/Hyprland environment variables
 export WLR_NO_HARDWARE_CURSORS=1
