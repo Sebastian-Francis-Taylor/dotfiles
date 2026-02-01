@@ -123,5 +123,9 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # filen-cli
 # PATH=$PATH:~/.filen-cli/bin
+#
+
+export JAVA_HOME=/usr/lib/jvm/java-25-openjdk
+export PATH=$JAVA_HOME/bin:$PATH
 
 source ~/.autoenv/activate.sh

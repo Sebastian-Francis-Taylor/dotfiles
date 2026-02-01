@@ -15,9 +15,11 @@ rm -rf yay
 # Core (change to intel-ucode if there is an intel chip in the system)
 sudo pacman -S --noconfirm --needed amd-ucode
 # Wifi, bluetooth etc
-sudo pacman -S --noconfirm --needed bluez bluez-utils cups networkmanager 
+sudo pacman -S --noconfirm --needed bluez bluez-utils cups networkmanager ufw iptables nftables
 # CLI Tools
-sudo pacman -S --noconfirm --needed nvim fzf tree-sitter tree-sitter-cli ripgrep tmux btop fastfetch tldr tree sudo-rs bc
+
+sudo pacman -S --noconfirm --needed nvim fzf tree-sitter tree-sitter-cli \
+                ripgrep tmux btop fastfetch tldr tree sudo-rs bc
 
 sudo pacman -S --noconfirm --needed powertop cpupower
 
@@ -44,25 +46,32 @@ cp -r $HOME/dotfiles/flags/ $HOME/.config/
 # ADD IWD DTUSecure CONFIG
 
 # Utils
-sudo pacman -S --noconfirm --needed firefox nautilus udiskie thunderbird poppler brightnessctl zathura usbutils unzip pipewire pipewire-pulse iwd eog pandoc
+sudo pacman -S --noconfirm --needed firefox nautilus udiskie thunderbird \
+    poppler brightnessctl zathura usbutils unzip pipewire pipewire-pulse  \
+    iwd eog pandoc
+
 yay -S --noconfirm --needed zen-browser-bin
 
 # Dev 
 sudo pacman -S --noconfirm --needed gcc nodejs cargo python
 
 # Hyprland
-sudo pacman -S --noconfirm --needed kitty wofi waybar wl-clipboard hyprlock hypridle hyprpaper hyprpicker hyprland
+
+sudo pacman -S --noconfirm --needed kitty wofi waybar wl-clipboard hyprlock \
+    hypridle hyprpaper hyprpicker hyprland
+
 yay -S --noconfirm --needed xdg-desktop-portal-hyprland
 
 # AUR packages
-yay -S --noconfirm --needed hyprshot zotero visual-studio-code-bin google-chrome vesktop bitwarden bambustudio-bin paccache-hook
+yay -S --noconfirm --needed hyprshot zotero vscodium-bin google-chrome vesktop \
+    bitwarden bambustudio-bin paccache-hook
 
 # Cloud storage
 sudo pacman -S --needed --noconfirm libsecret gnome-keyring pika-backup
 yay -S --needed --noconfirm filen-desktop
 curl -sL https://filen.io/cli.sh | bash
 
-# consider updated to restore from pika-backup
+# consider to restore from pika-backup
 mkdir -p $HOME/Cloud
 if filen mount $HOME/Cloud; then
     # Only copy if directories exist in cloud storage
@@ -88,6 +97,7 @@ sudo systemctl enable NetworkManager
 sudo systemctl enable bluetooth
 sudo systemctl enable cups
 sudo systemctl enable fstrim.timer
+sudo ystemctl enable ufw.service
 sudo usermod -aG wheel,audio,video,input,storage $USER
 sudo systemctl start NetworkManager
 systemctl --user enable --now pipewire pipewire-pulse
@@ -104,19 +114,31 @@ ethernet.cloned-mac-address=random
 wifi.cloned-mac-address=random
 [connection]
 ipv6.method=auto
-[device]
-wifi.backend=iwd
+# [device]
+# wifi.backend=iwd
 EOF
+
+# Configure firewall
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow from 192.168.0.0/24
+
+sudo ufw allow ssh
+sudo ufw limit ssh
 
 sudo systemctl restart NetworkManager
 
 # Fonts install
-sudo pacman -S --needed --noconfirm noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra ttf-ibmplex-mono-nerd
+
+sudo pacman -S --needed --noconfirm noto-fonts noto-fonts-cjk noto-fonts-emoji \
+    noto-fonts-extra ttf-ibmplex-mono-nerd
+
 fc-cache -f -v
 
 # Python
 python -m venv $HOME/.globalenv
 $HOME/.globalenv/bin/pip install -r $HOME/dotfiles/scripts/python-pkgs.txt
+$HOME/.globalenv/bin/python -m ipykernel install --user --name=globalenv --display-name "Python (globalenv)"
 
 # Scripts
 mkdir -p $HOME/.local/bin
@@ -126,8 +148,6 @@ ln -s $HOME/dotfiles/scripts/fcd.sh $HOME/.local/bin/fcd
 
 chmod +x $HOME/dotfiles/scripts/filen-automount.sh
 ln -s $HOME/dotfiles/scripts/filen-automount.sh $HOME/.local/bin/filen-automount
-
-chomod +x $HOME/dotfiles/dots/.config/monitor.sh
 
 #zsh config with Oh My ZSH
 sudo pacman -S --noconfirm --needed zsh

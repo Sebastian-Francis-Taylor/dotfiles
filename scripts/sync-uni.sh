@@ -7,6 +7,7 @@ case "$1" in
     push)
         rsync -avz --delete \
             --info=progress2 \
+            --timeout=300 \
             --exclude='.venv' \
             --exclude='__pycache__' \
             --exclude='node_modules' \
@@ -17,6 +18,7 @@ case "$1" in
     pull)
         rsync -avz --delete \
             --info=progress2 \
+            --timeout=300 \
             --exclude='.venv' \
             --exclude='__pycache__' \
             --exclude='node_modules' \

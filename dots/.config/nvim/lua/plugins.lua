@@ -46,7 +46,7 @@ return packer.startup(function(use)
     -- Colorschemes
     use 'ellisonleao/gruvbox.nvim'
     use 'shaunsingh/nord.nvim'
-    -- use 'e-ink-colorscheme/e-ink.nvim'
+    use 'e-ink-colorscheme/e-ink.nvim'
     
     -- Telescope
     use {
@@ -75,6 +75,7 @@ return packer.startup(function(use)
     use 'neovim/nvim-lspconfig'
     use 'williamboman/mason.nvim'
     use 'williamboman/mason-lspconfig.nvim'
+    --[[
     use {
         'scalameta/nvim-metals',
         ft = { 'scala', 'sbt', 'java' },
@@ -96,6 +97,7 @@ return packer.startup(function(use)
             })
         end
     }
+    ]]
     
     -- Completion
     use 'hrsh7th/nvim-cmp'

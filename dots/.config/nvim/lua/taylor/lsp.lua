@@ -78,7 +78,7 @@ require('mason-lspconfig').setup({
         cmd = {'fsautocomplete', '--background-service-enabled'},
         filetypes = {'fsharp'},
         init_options = {
-          AutomaticWorkspaceInit = true
+          AutomaticWorkspaceInit = true,
         }
       })
     end,

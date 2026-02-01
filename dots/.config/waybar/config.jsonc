@@ -22,9 +22,9 @@
         "on-click": "kitty -- alsamixer -V all",
         "format-icons": {
             "default": [
-                "",
-                "",
-                ""
+                "",
+                "",
+                ""
             ]
         }
     },
@@ -32,7 +32,7 @@
         "tooltip": false,
         "format-wifi": "  {essid}",
         "format-ethernet": "󰈀 Ethernet",
-        "on-click": "nm-connection-editor"
+        "on-click": "iwgtk"
     },
     "backlight": {
         "tooltip": false,
