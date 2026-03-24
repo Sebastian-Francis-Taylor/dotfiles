@@ -14,6 +14,12 @@ sanity_check() {
         echo "nvim not installed"  
         exit 1
     fi
+
+    if ! command -v fzf >/dev/null 2>&1
+    then 
+        echo "fzf not installed"
+        exit 1
+    fi
 }
 
 find_directories() {
