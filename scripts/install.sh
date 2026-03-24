@@ -16,10 +16,11 @@ rm -rf yay
 sudo pacman -S --noconfirm --needed amd-ucode
 # Wifi, bluetooth etc
 sudo pacman -S --noconfirm --needed bluez bluez-utils cups networkmanager ufw iptables nftables
-# CLI Tools
 
+# CLI Tools
 sudo pacman -S --noconfirm --needed nvim fzf tree-sitter tree-sitter-cli \
-                ripgrep tmux btop fastfetch tldr tree sudo-rs bc
+                ripgrep tmux btop fastfetch tree sudo-rs bc bat
+yay -S tlrc-bin
 
 sudo pacman -S --noconfirm --needed powertop cpupower
 
