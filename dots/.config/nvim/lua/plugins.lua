@@ -40,6 +40,10 @@ packer.init({
 
 -- Install your plugins here
 return packer.startup(function(use)
+
+    -- AI sloppy
+    use 'github/copilot.vim'
+
     -- Plugin manager
     use 'wbthomason/packer.nvim'
     
@@ -120,6 +124,14 @@ return packer.startup(function(use)
     
     -- Utilities
     use 'lervag/vimtex'
+    use {
+      'chomosuke/typst-preview.nvim',
+      tag = 'v1.*',
+      config = function()
+        require 'typst-preview'.setup {}
+      end,
+    }
+    use 'stevearc/conform.nvim'
     use 'jose-elias-alvarez/null-ls.nvim'
     use 'norcalli/nvim-colorizer.lua'
     use 'Aasim-A/scrollEOF.nvim'

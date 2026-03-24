@@ -13,7 +13,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', '<leader>vrr', function() vim.lsp.buf.references() end, opts)
     vim.keymap.set('n', '<leader>vrn', function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set('i', '<C-h>', function() vim.lsp.buf.signature_help() end, opts)
-    vim.keymap.set('n', '<leader>lf', function() vim.lsp.buf.format() end, opts)
+    vim.keymap.set('n', '<leader>lf', function() require('conform').format({ bufnr = event.buf }) end, opts)
   end,
 })
 
@@ -30,11 +30,11 @@ vim.diagnostic.config({
     float = true,
 })
 
--- Auto format on save
+-- Auto format on save (uses conform -> prettier when available, falls back to LSP)
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
-  callback = function()
-    vim.lsp.buf.format()
+  callback = function(args)
+    require('conform').format({ bufnr = args.buf, lsp_fallback = true })
   end,
 })
 
