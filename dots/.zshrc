@@ -106,6 +106,7 @@ alias sudo='sudo-rs'
 alias sudoedit='sudoedit-rs'
 alias vim='nvim'
 alias lock='hyprlock'
+alias cat='bat'
 
 export FCD_SEARCH_DIRS="$HOME/Documents $HOME/Projects $HOME/Uni $HOME/dotfiles"
 
