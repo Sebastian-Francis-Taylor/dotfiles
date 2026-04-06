@@ -13,6 +13,7 @@
 
 filen=$HOME/.filen-cli/bin/filen
 mountpoint=$HOME/Cloud
+max_attempts=3
 
 notify() {
     local urgency="$1" title="$2" body="$3"
@@ -29,19 +30,21 @@ notify() {
 }
 
 mount_drive() {
+    local attempt=${1:-1}
+
     if mountpoint -q "$mountpoint"; then
         echo "already mounted"
         return 0
     fi
 
     echo "not mounted, attempting to mount..."
-    $filen mount "$mountpoint"
+    $filen --skip-update mount "$mountpoint"
     sleep 2
 
     if mountpoint -q "$mountpoint"; then
         echo "mounted successfully"
     else
-        notify critical "Filen Mount Failed" "could not mount cloud storage"
+        notify critical "Filen Mount Failed" "could not mount cloud storage (attempt $attempt/$max_attempts)"
         return 1
     fi
 }
@@ -50,14 +53,14 @@ try_connect() {
     local attempt=${1:-1}
 
     if wget -q --spider http://sebastian-taylor.com; then
-        mount_drive
+        mount_drive "$attempt"
         return $?
     fi
 
-    echo "attempt $attempt/3: no internet"
+    echo "attempt $attempt/$max_attempts: no internet"
 
-    if [ "$attempt" -ge 3 ]; then
-        notify critical "No Internet" "cloud storage could not be mounted after 3 attempts"
+    if [ "$attempt" -ge "$max_attempts" ]; then
+        notify critical "No Internet" "cloud storage could not be mounted after $max_attempts attempts"
         return 1
     fi
 
