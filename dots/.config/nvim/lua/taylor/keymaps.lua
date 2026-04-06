@@ -3,7 +3,6 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 8
-vim.wo.scrolloff = 8
 vim.opt.undofile = true -- long undo history
 vim.opt.undodir = vim.fn.expand('~/.undo')
 vim.opt.updatetime = 50 -- faster update time
