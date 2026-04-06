@@ -1,5 +1,5 @@
 -- General settings
-vim.g.mapleader = " "
+-- leader set in init.lua
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 8
