@@ -132,7 +132,7 @@ sudo systemctl restart NetworkManager
 # Fonts install
 
 sudo pacman -S --needed --noconfirm noto-fonts noto-fonts-cjk noto-fonts-emoji \
-    noto-fonts-extra ttf-ibmplex-mono-nerd
+    noto-fonts-extra ttf-ibmplex-mono-nerd ttf-ibm-plex
 
 fc-cache -f -v
 
