@@ -62,10 +62,13 @@ return packer.startup(function(use)
     -- Treesitter
     use {
         'nvim-treesitter/nvim-treesitter',
-        branch = 'master',
+        branch = 'main',
         run = ':TSUpdate'
     }
-    use 'nvim-treesitter/nvim-treesitter-textobjects'
+    use {
+        'nvim-treesitter/nvim-treesitter-textobjects',
+        branch = 'main',
+    }
     
     -- Navigation
     use {
@@ -73,8 +76,7 @@ return packer.startup(function(use)
         branch = 'harpoon2',
         requires = { 'nvim-lua/plenary.nvim' }
     }
-    use 'mbbill/undotree'
-    
+
     -- LSP
     use 'neovim/nvim-lspconfig'
     use 'williamboman/mason.nvim'
@@ -124,16 +126,8 @@ return packer.startup(function(use)
     
     -- Utilities
     use 'lervag/vimtex'
-    use {
-      'chomosuke/typst-preview.nvim',
-      tag = 'v1.*',
-      config = function()
-        require 'typst-preview'.setup {}
-      end,
-    }
     use 'stevearc/conform.nvim'
-    use 'jose-elias-alvarez/null-ls.nvim'
-    use 'norcalli/nvim-colorizer.lua'
+    use 'NvChad/nvim-colorizer.lua'
     use 'Aasim-A/scrollEOF.nvim'
     use {
         'windwp/nvim-autopairs',
