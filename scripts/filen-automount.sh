@@ -15,14 +15,15 @@ filen=$HOME/.filen-cli/bin/filen
 mountpoint=$HOME/Cloud
 max_attempts=3
 
+
 notify() {
     local urgency="$1" title="$2" body="$3"
 
-    if command -v notify-send &>/dev/null; then        # gnome/kde/most DEs
+    if command -v notify-send &>/dev/null; then     # gnome/kde/most DEs
         notify-send -u "$urgency" "$title" "$body"
-    elif command -v dunstify &>/dev/null; then          # arch + dunst
+    elif command -v dunstify &>/dev/null; then      # arch + dunst
         dunstify -u "$urgency" "$title" "$body"
-    elif command -v kdialog &>/dev/null; then            # kde without libnotify
+    elif command -v kdialog &>/dev/null; then       # kde without libnotify
         kdialog --passivepopup "$title: $body" 10
     else
         echo "[$urgency] $title - $body" >&2
@@ -50,6 +51,12 @@ mount_drive() {
 }
 
 try_connect() {
+
+    if [[ ! -x "$filen" ]]; then
+        notify critical "Filen Cli not installed" "please put the filen cli executable in $filen"
+        return 1 
+    fi
+
     local attempt=${1:-1}
 
     if wget -q --spider http://sebastian-taylor.com; then
