@@ -39,6 +39,7 @@ mount_drive() {
     fi
 
     echo "not mounted, attempting to mount..."
+    mkdir -p "$mountpoint"
     $filen --skip-update mount "$mountpoint"
     sleep 2
 
@@ -52,16 +53,15 @@ mount_drive() {
 
 try_connect() {
 
-    if [[ ! -x "$filen" ]]; then
-        notify critical "Filen Cli not installed" "please put the filen cli executable in $filen"
-        return 1 
-    fi
 
     local attempt=${1:-1}
 
     if wget -q --spider http://sebastian-taylor.com; then
-        mount_drive "$attempt"
-        return $?
+        if mount_drive "$attempt"; then
+            notify normal "Filen Drive Mounted" "your filen drive has been mounted at $mountpoint"
+            return 0
+        fi
+        return 1
     fi
 
     echo "attempt $attempt/$max_attempts: no internet"
@@ -76,4 +76,13 @@ try_connect() {
     try_connect $((attempt + 1))
 }
 
-try_connect
+main() {
+    if [[ ! -x "$filen" ]]; then
+        notify critical "Filen Cli not installed" "please put the filen cli executable in $filen"
+        return 1 
+    fi
+
+    try_connect
+}
+
+main
