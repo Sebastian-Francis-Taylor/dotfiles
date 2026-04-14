@@ -1,3 +1,4 @@
+require('taylor.configuration')
 require('taylor.keymaps')
 require('taylor.gruvbox')
 require('taylor.telescope')
