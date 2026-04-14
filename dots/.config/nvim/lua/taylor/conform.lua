@@ -9,8 +9,13 @@ require('conform').setup({
     html = { 'prettier' },
     markdown = { 'prettier' },
     yaml = { 'prettier' },
+    typst = { 'typstyle' },
   },
   formatters = {
+    typstyle = {
+      command = vim.fn.stdpath('data') .. '/mason/bin/typstyle',
+      prepend_args = { '--wrap-text' },
+    },
     prettier = {
       command = vim.fn.stdpath('data') .. '/mason/bin/prettier',
     },
