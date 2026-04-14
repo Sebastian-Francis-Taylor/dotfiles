@@ -11,6 +11,7 @@ vim.opt.guicursor = "n-v-i-c:block-Cursor" -- sets block cursor for all modes
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
+vim.opt.colorcolumn = "80"
 -- sets universal clipboard
 vim.keymap.set('v', '<leader>y', '"+y', {silent = true})
 vim.keymap.set('v', '<leader>p', '"+p', {silent = true})
