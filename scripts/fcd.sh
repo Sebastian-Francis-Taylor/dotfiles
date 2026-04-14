@@ -30,6 +30,11 @@ sanity_check() {
         echo "fzf not installed"
         exit 1
     fi
+
+    if [ -z "$FCD_SEARCH_DIRS" ]; then
+        echo "FCD_SEARCH_DIRS is not set"
+        exit 1
+    fi
 }
 
 find_directories() {
@@ -64,7 +69,6 @@ find_directories() {
     
     dir="$selection"
 }
-
 
 main() {
     sanity_check  
