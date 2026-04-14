@@ -46,7 +46,8 @@ mount_drive() {
     if mountpoint -q "$mountpoint"; then
         echo "mounted successfully"
     else
-        notify critical "Filen Mount Failed" "could not mount cloud storage (attempt $attempt/$max_attempts)"
+        notify critical "Filen Mount Failed" 
+            \ "could not mount cloud storage (attempt $attempt/$max_attempts)"
         return 1
     fi
 }
@@ -58,7 +59,8 @@ try_connect() {
 
     if wget -q --spider http://sebastian-taylor.com; then
         if mount_drive "$attempt"; then
-            notify normal "Filen Drive Mounted" "your filen drive has been mounted at $mountpoint"
+            notify normal "Filen Drive Mounted" 
+                \ "your filen drive has been mounted at $mountpoint"
             return 0
         fi
         return 1
@@ -67,7 +69,8 @@ try_connect() {
     echo "attempt $attempt/$max_attempts: no internet"
 
     if [ "$attempt" -ge "$max_attempts" ]; then
-        notify critical "No Internet" "cloud storage could not be mounted after $max_attempts attempts"
+        notify critical "No Internet" 
+            \ "cloud storage could not be mounted after $max_attempts attempts"
         return 1
     fi
 
@@ -78,7 +81,8 @@ try_connect() {
 
 main() {
     if [[ ! -x "$filen" ]]; then
-        notify critical "Filen Cli not installed" "please put the filen cli executable in $filen"
+        notify critical "Filen Cli not installed" 
+            \ "please put the filen cli executable in $filen"
         return 1 
     fi
 
