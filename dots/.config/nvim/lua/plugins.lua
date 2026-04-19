@@ -1,6 +1,6 @@
 return {
     -- AI
-    { 'github/copilot.vim' },
+    -- { 'github/copilot.vim' },
 
     -- Colorschemes
     { 'ellisonleao/gruvbox.nvim' },
