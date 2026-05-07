@@ -13,7 +13,8 @@ install_applications() {
     # Core (change to intel-ucode if there is an intel chip in the system)
     sudo pacman -S --noconfirm --needed amd-ucode
     # Wifi, bluetooth etc
-    sudo pacman -S --noconfirm --needed bluez bluez-utils cups networkmanager ufw iptables nftables
+    sudo pacman -S --noconfirm --needed bluez bluez-utils cups networkmanager \ 
+                            ufw iptables nftables
 
     # CLI Tools
     sudo pacman -S --noconfirm --needed neovim fzf tree-sitter tree-sitter-cli \
@@ -39,8 +40,8 @@ install_applications() {
     yay -S --noconfirm --needed xdg-desktop-portal-hyprland
 
     # AUR packages
-    yay -S --noconfirm --needed hyprshot zotero vscodium-bin google-chrome vesktop \
-        bitwarden bambustudio-bin paccache-hook
+    yay -S --noconfirm --needed hyprshot zotero vscodium-bin google-chrome \
+    vesktop bitwarden bambustudio-bin paccache-hook
 
     # Cloud storage
     sudo pacman -S --needed --noconfirm libsecret gnome-keyring pika-backup
@@ -48,12 +49,16 @@ install_applications() {
     curl -sL https://filen.io/cli.sh | bash
 
     # Misc
-    sudo pacman -S --noconfirm --needed maven obs-studio signal-desktop krita libsecret dotnet-sdk batsignal
+    sudo pacman -S --noconfirm --needed maven obs-studio signal-desktop krita \
+    libsecret dotnet-sdk batsignal 
 }
 
 install_fonts() {
-    sudo pacman -S --needed --noconfirm noto-fonts noto-fonts-cjk noto-fonts-emoji \
-        noto-fonts-extra ttf-ibmplex-mono-nerd ttf-ibm-plex
+
+    sudo pacman -S --needed --noconfirm noto-fonts noto-fonts-cjk \
+    noto-fonts-emoji noto-fonts-extra ttf-ibmplex-mono-nerd ttf-ibm-plex \ 
+    adwaita-icon-theme
+
     fc-cache -f -v
 }
 
@@ -73,7 +78,8 @@ setup_dotfiles() {
 setup_python() {
     python -m venv "$HOME/.globalenv"
     "$HOME/.globalenv/bin/pip" install -r "$HOME/dotfiles/scripts/python-pkgs.txt"
-    "$HOME/.globalenv/bin/python" -m ipykernel install --user --name=globalenv --display-name "Python (globalenv)"
+    "$HOME/.globalenv/bin/python" -m ipykernel install --user --name=globalenv 
+     \ --display-name "Python (globalenv)"
 }
 
 setup_scripts() {
@@ -83,7 +89,8 @@ setup_scripts() {
     ln -sf "$HOME/dotfiles/scripts/fcd.sh" "$HOME/.local/bin/fcd"
 
     chmod +x "$HOME/dotfiles/scripts/filen-automount.sh"
-    ln -sf "$HOME/dotfiles/scripts/filen-automount.sh" "$HOME/.local/bin/filen-automount"
+    ln -sf "$HOME/dotfiles/scripts/filen-automount.sh" \
+        "$HOME/.local/bin/filen-automount"
 }
 
 system_services() {

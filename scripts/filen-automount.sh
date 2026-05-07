@@ -57,7 +57,7 @@ try_connect() {
 
     local attempt=${1:-1}
 
-    if wget -q --spider http://sebastian-taylor.com; then
+    if ping -c1 -W1 1.1.1.1 >/dev/null 2>&1; then
         if mount_drive "$attempt"; then
             notify normal "Filen Drive Mounted" 
                 \ "your filen drive has been mounted at $mountpoint"
