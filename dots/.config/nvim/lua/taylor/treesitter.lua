@@ -1,5 +1,5 @@
 -- Install parsers (replaces ensure_installed)
-require('nvim-treesitter').install({ "lua", "java", "bash", "python", "typst" })
+require('nvim-treesitter').install({ "lua", "java", "bash", "python", "typst", "typescript" })
 
 -- Enable treesitter highlighting for all filetypes (except latex)
 vim.api.nvim_create_autocmd('FileType', {

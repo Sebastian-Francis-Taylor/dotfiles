@@ -43,7 +43,7 @@ install_applications() {
         bitwarden bambustudio-bin paccache-hook
 
     # Cloud storage
-    sudo pacman -S --needed --noconfirm libsecret gnome-keyring pika-backup
+    sudo pacman -S --needed --noconfirm libsecret gnome-keyring pika-backup pika-backup-monitor
     yay -S --needed --noconfirm filen-desktop
     curl -sL https://filen.io/cli.sh | bash
 
@@ -127,6 +127,8 @@ firewall() {
 
     sudo ufw allow ssh
     sudo ufw limit ssh
+
+    sudo ufw enable
 
     sudo systemctl restart NetworkManager
 }
