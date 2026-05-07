@@ -9,6 +9,7 @@
         "hyprland/workspaces"
     ],
     "modules-right": [
+        "tray",
         "custom/bluetooth",
         "network",
         "battery",
@@ -90,5 +91,9 @@
         "return-type": "plain",
         "tooltip": false,
         "max-length": 25
+    },
+    "tray": {
+        "icon-size": 16,
+        "spacing": 8
     }
 }
