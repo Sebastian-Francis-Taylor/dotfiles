@@ -64,7 +64,7 @@ install_fonts() {
 
 setup_git() {
     git config --global user.name "Sebastian-Francis-Taylor"
-    git config --global user.email "me@sebastian-taylor.com"
+    git config --global user.email "git@sebastiantaylor.com"
 }
 
 setup_dotfiles() {
@@ -170,7 +170,7 @@ main() {
 
 setup_ssh() {
     ssh-keygen -t ed25519 -C "me@sebastian-taylor.com"
-    echo "Add your public key to GitHub: cat ~/.ssh/id_ed25519.pub"
+    echo "Add your public key to GitHub: cat ~/.ssh/id_ed25519.pub | wl-copy"
 }
 
 main
